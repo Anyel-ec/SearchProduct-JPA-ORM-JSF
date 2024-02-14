@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/tablas.css" />
+
+</h:head>
+<!-- desarrollado por Angel Patiño -->
+
+    <h:body>
+        <div class="container">
+            <h2>Detalles del Electrodomestico igual a Diez unidades</h2>
+
+            <!-- "No existen unidades del electrodoméstico @nombre de la marca @marca
+                 y modelo @modelo, por lo que se debe importar un lote del producto". -->
+            <c:if test="${not empty buscarElectroBean.electrodomestico}">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">Desarrollado Por Angel Patiño</p>
+
+                        No existen unidades del electrodoméstico #{buscarElectroBean.electrodomestico.nombre} de la marca #{buscarElectroBean.electrodomestico.marca} y modelo #{buscarElectroBean.electrodomestico.modelo}
+                        cuenta con #{buscarElectroBean.electrodomestico.cantidad} por lo que se debe importar un lote del producto.
+                        <h:link outcome="/index.jsp" class="btn btn-success" value="Ir a Inicio"/>
+                    </div>
+                </div>
+            </c:if>
+                <h:dataTable value="#{electrodomesticoManagerBean.productosConCeroUnidades}" var="electrodomesticos" border="1">
+
+                    <h:column>
+                        <h:outputText value ="#{electrodomesticos.id_electrodomestico}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value ="#{electrodomesticos.nombre}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value ="#{electrodomesticos.marca}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value ="#{electrodomesticos.cantidad}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+        </div>
+    </h:body>
+</html>
